@@ -1,5 +1,13 @@
 #!/bin/sh
 
+USERNAME=${USERNAME:-swayvnc}
+
+if [ "$USER" != "$USERNAME" ]; then
+  echo "The current user ($USER) does not match the target user ($USERNAME). Re-running with sudo -u $USERNAME..."
+  sudo -u $USERNAME "$0" "$@"
+  exit $?
+fi
+
 export RESOLUTION="1600x900"
 export VNC=true
 export VNC_ENABLE_AUTH=false

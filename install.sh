@@ -1,14 +1,17 @@
 #!/bin/sh
 
+VERSION=${VERSION:-main}
+USERNAME=${USERNAME:-swayvnc}
+PASSWORD=${PASSWORD:-pass}
+
 sudo true
-cd $HOME
 export DEBIAN_FRONTEND=noninteractive
 sudo apt-get update
 sudo apt-get install -y --no-install-recommends \
     x11-xserver-utils \
     xauth \
-    xinit && \
-    apt-get install -y \
+    xinit
+apt-get install -y \
     curl \
     dbus-x11 \
     j4-dmenu-desktop \
@@ -23,12 +26,14 @@ sudo apt-get install -y --no-install-recommends \
     wayvnc \
     xwayland
 
-curl -L https://gitlab.com/bitspur/community/swayvnc/-/raw/main/swayvnc.sh | sudo tee /usr/local/bin/swayvnc
+curl -L https://gitlab.com/bitspur/community/swayvnc/-/raw/${VERSION}/swayvnc.sh | sudo tee /usr/local/bin/swayvnc
 sudo chmod +x /usr/local/bin/swayvnc
 
-sudo useradd -m admin
-sudo passwd admin
+sudo useradd -m $USERNAME
+(echo "$PASSWORD"; echo "$PASSWORD") | sudo passwd $USERNAME
+SWAYVNC_CONFIG=/home/$USERNAME/.config/swayvnc
 
-openssl req -x509 -newkey rsa:4096 -sha256 -days 999999 -nodes \
-    -keyout key.pem -out cert.pem -subj /CN=localhost \
+sudo -u $USERNAME mkdir -p $SWAYVNC_CONFIG
+sudo -u $USERNAME openssl req -x509 -newkey rsa:4096 -sha256 -days 999999 -nodes \
+    -keyout $SWAYVNC_CONFIG/key.pem -out $SWAYVNC_CONFIG/cert.pem -subj /CN=localhost \
     -addext subjectAltName=DNS:localhost,DNS:localhost,IP:127.0.0.1
