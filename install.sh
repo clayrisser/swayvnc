@@ -33,11 +33,14 @@ sudo useradd -m $USERNAME
 (echo "$PASSWORD"; echo "$PASSWORD") | sudo passwd $USERNAME
 
 WAYVNC_CONFIG=/home/$USERNAME/.config/wayvnc
+SWAY_CONFIG=/home/$USERNAME/.config/sway
 sudo -u $USERNAME mkdir -p $WAYVNC_CONFIG
+sudo -u $USERNAME mkdir -p $SWAY_CONFIG
 sudo -u $USERNAME openssl req -x509 -newkey rsa:4096 -sha256 -days 999999 -nodes \
     -keyout $WAYVNC_CONFIG/key.pem -out $WAYVNC_CONFIG/cert.pem -subj /CN=localhost \
     -addext subjectAltName=DNS:localhost,DNS:localhost,IP:127.0.0.1
-cat <<EOF
+sudo -u $USERNAME cp /etc/sway/config $SWAY_CONFIG/config
+cat <<EOF | sudo -u $USERNAME | tee -a $SWAY_CONFIG/config
 exec sh -c "[ \"\$VNC\" != \"false\" ] && wayvnc -C $WAYVNC_CONFIG/config || true"
 exec swaymsg output "HEADLESS-1" resolution "\$RESOLUTION"
 EOF
