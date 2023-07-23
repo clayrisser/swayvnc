@@ -6,7 +6,6 @@ PASSWORD=${PASSWORD:-pass}
 
 sudo true
 export DEBIAN_FRONTEND=noninteractive
-sudo apt-get autoremove
 sudo apt-get update
 sudo apt-get install -y --no-install-recommends \
     x11-xserver-utils \
