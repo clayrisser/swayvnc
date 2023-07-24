@@ -17,8 +17,9 @@ if [ "$USER" != "$USERNAME" ]; then
   exit $?
 fi
 
-export XDG_RUNTIME_DIR=/run/user/$(id -u)
+export XDG_RUNTIME_DIR=/tmp/run/user/$(id -u)
 WAYVNC_CONFIG=$HOME/.config/wayvnc
+mkdir -p $XDG_RUNTIME_DIR
 mkdir -p $WAYVNC_CONFIG
 cat <<EOF > $WAYVNC_CONFIG/config
 address=$VNC_ADDRESS
