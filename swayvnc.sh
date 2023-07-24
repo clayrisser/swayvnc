@@ -9,7 +9,7 @@ export VNC_ADDRESS="0.0.0.0"
 export SWAYSOCK="/tmp/sway-ipc.sock"
 export WLR_BACKENDS="headless"
 export WLR_LIBINPUT_NO_DEVICES=1
-export XDG_RUNTIME_DIR="/tmp"
+export XDG_RUNTIME_DIR=/run/user/$(id -u)
 
 if [ "$USER" != "$USERNAME" ]; then
   echo "The current user ($USER) does not match the target user ($USERNAME). Re-running with sudo -u $USERNAME..."
@@ -20,6 +20,7 @@ fi
 
 WAYVNC_CONFIG=$HOME/.config/wayvnc
 mkdir -p $WAYVNC_CONFIG
+mkdir -p $XDG_RUNTIME_DIR
 cat <<EOF > $WAYVNC_CONFIG/config
 address=$VNC_ADDRESS
 port=$VNC_PORT
