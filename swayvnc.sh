@@ -27,7 +27,7 @@ port=$VNC_PORT
 enable_auth=$VNC_ENABLE_AUTH
 username=$USER
 password=$VNC_PASSWORD
-private_key_file=\$HOME/.config/wayvnc/key.pem
-certificate_file=\$HOME/.config/wayvnc/cert.pem
+private_key_file=$WAYVNC_CONFIG/key.pem
+certificate_file=$WAYVNC_CONFIG/cert.pem
 EOF
 exec sway
