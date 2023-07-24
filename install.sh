@@ -26,7 +26,7 @@ apt-get install -y \
     wayvnc \
     xwayland
 
-curl -L https://gitlab.com/bitspur/community/swayvnc/-/raw/${VERSION}/swayvnc.sh | sudo tee /usr/local/bin/swayvnc
+curl -L https://gitlab.com/bitspur/community/swayvnc/-/raw/${VERSION}/swayvnc.sh | sudo tee /usr/local/bin/swayvnc >/dev/null
 sudo chmod +x /usr/local/bin/swayvnc
 
 sudo useradd -m $USERNAME
@@ -39,8 +39,8 @@ sudo -u $USERNAME mkdir -p $SWAY_CONFIG
 sudo -u $USERNAME openssl req -x509 -newkey rsa:4096 -sha256 -days 999999 -nodes \
     -keyout $WAYVNC_CONFIG/key.pem -out $WAYVNC_CONFIG/cert.pem -subj /CN=localhost \
     -addext subjectAltName=DNS:localhost,DNS:localhost,IP:127.0.0.1
-sudo -u $USERNAME cp /etc/sway/config $SWAY_CONFIG/config
-cat <<EOF | sudo -u $USERNAME | tee -a $SWAY_CONFIG/config
+cat /etc/sway/config | sudo -u $USERNAME tee $SWAY_CONFIG/config >/dev/null
+cat <<EOF | sudo -u $USERNAME tee -a $SWAY_CONFIG/config >/dev/null
 exec sh -c "[ \"\$VNC\" != \"false\" ] && wayvnc -C $WAYVNC_CONFIG/config || true"
 exec swaymsg output "HEADLESS-1" resolution "\$RESOLUTION"
 EOF
