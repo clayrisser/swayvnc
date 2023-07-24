@@ -16,13 +16,13 @@ if [ "$USER" != "$USERNAME" ]; then
   exit $?
 fi
 
-WAYVNC_CONFIG=$HOME/.config/wayvnc
 mkdir -p $WAYVNC_CONFIG
-printf "
+cat <<EOF > $WAYVNC_CONFIG/config
 address=$VNC_ADDRESS
 enable_auth=$VNC_ENABLE_AUTH
 username=$USER
 password=$VNC_PASSWORD
-private_key_file=$WAYVNC_CONFIG/key.pem
-certificate_file=$WAYVNC_CONFIG/cert.pem" > $WAYVNC_CONFIG/config
+private_key_file=\$HOME/.config/wayvnc/key.pem
+certificate_file=\$HOME/.config/wayvnc/cert.pem
+EOF
 exec sway
