@@ -16,6 +16,7 @@ if [ "$USER" != "$USERNAME" ]; then
   exit $?
 fi
 
+WAYVNC_CONFIG=$HOME/.config/wayvnc
 mkdir -p $WAYVNC_CONFIG
 cat <<EOF > $WAYVNC_CONFIG/config
 address=$VNC_ADDRESS
