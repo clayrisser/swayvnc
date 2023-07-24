@@ -9,3 +9,24 @@ curl -L https://gitlab.com/bitspur/community/swayvnc/-/raw/main/install.sh | sud
 ```
 
 ## Usage
+
+```sh
+sudo swayvnc # starts sway with a vnc server
+```
+
+Connect with a vnc client at vnc://<IP_ADDRESS>:5900
+
+## Recommended Clients
+
+### Linux
+
+- [Gnome Connections](https://apps.gnome.org/app/org.gnome.Connections)
+- [Remmina](https://remmina.org)
+
+### Windows
+- [TightVNC Client](https://www.tightvnc.com)
+- [TigerVNC Client](https://tigervnc.org)
+
+### OSX
+- [TightVNC Client](https://www.tightvnc.com)
+- [TigerVNC Client](https://tigervnc.org)
