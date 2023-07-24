@@ -41,6 +41,8 @@ sudo -u $USERNAME openssl req -x509 -newkey rsa:4096 -sha256 -days 999999 -nodes
     -keyout $WAYVNC_CONFIG/key.pem -out $WAYVNC_CONFIG/cert.pem -subj /CN=localhost \
     -addext subjectAltName=DNS:localhost,DNS:localhost,IP:127.0.0.1
 cat /etc/sway/config > $SWAY_CONFIG/config
+sudo touch /var/log/wayvnc.log
+sudo chmod 666 /var/log/wayvnc.log
 cat <<EOF >> $SWAY_CONFIG/config
 exec sh -c "[ \"\$VNC\" != \"false\" ] && wayvnc -C \$HOME/.config/wayvnc/config -L debug 2>&1 >/var/log/wayvnc.log || true"
 exec swaymsg output "HEADLESS-1" resolution "\$RESOLUTION"
