@@ -6,7 +6,7 @@ export VNC_ENABLE_AUTH=${VNC_ENABLE_AUTH:-true}
 export VNC_PASSWORD=${VNC_PASSWORD:-P@ssw0rd}
 export VNC_PORT=${VNC_PORT:-5900}
 export VNC_ADDRESS="0.0.0.0"
-export SWAYSOCK="/var/run/sway-ipc.sock"
+export SWAYSOCK="/tmp/sway-ipc.sock"
 export WLR_BACKENDS="headless"
 export WLR_LIBINPUT_NO_DEVICES=1
 
