@@ -47,3 +47,19 @@ exec swaymsg output "HEADLESS-1" resolution "\$RESOLUTION"
 EOF
 chown -R $USERNAME:$USERNAME $WAYVNC_CONFIG
 chown -R $USERNAME:$USERNAME $SWAY_CONFIG
+
+cat <<EOF > /etc/systemd/system/swayvnc.service
+[Unit]
+Description=SwayVNC Service
+After=network.target
+
+[Service]
+User=swayvnc
+ExecStart=/usr/local/bin/swayvnc
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+EOF
+sudo systemctl enable swayvnc
+sudo systemctl start swayvnc
