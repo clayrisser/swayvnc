@@ -56,6 +56,9 @@ After=network.target
 [Service]
 User=swayvnc
 ExecStart=/usr/local/bin/swayvnc
+Environment="RESOLUTION=${RESOLUTION:-1600x900}"
+Environment="VNC_ENABLE_AUTH=${VNC_ENABLE_AUTH:-true}"
+Environment="VNC_PASSWORD=${VNC_PASSWORD:-P@ssw0rd}"
 Restart=always
 
 [Install]
