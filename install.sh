@@ -32,6 +32,9 @@ sudo chmod +x /usr/local/bin/swayvnc
 sudo useradd -m $USERNAME
 (echo "$PASSWORD"; echo "$PASSWORD") | sudo passwd $USERNAME
 sudo /sbin/usermod -aG sudo $USERNAME
+XDG_RUNTIME_DIR=/run/user/$(id $USERNAME -u)
+mkdir -p $XDG_RUNTIME_DIR
+chown -R $USERNAME:$USERNAME $XDG_RUNTIME_DIR
 
 WAYVNC_CONFIG=/home/$USERNAME/.config/wayvnc
 SWAY_CONFIG=/home/$USERNAME/.config/sway
