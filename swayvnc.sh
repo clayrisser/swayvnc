@@ -13,7 +13,8 @@ export XDG_RUNTIME_DIR="/tmp"
 
 if [ "$USER" != "$USERNAME" ]; then
   echo "The current user ($USER) does not match the target user ($USERNAME). Re-running with sudo -u $USERNAME..."
-  sudo -u $USERNAME -E -u HOME "$0" "$@"
+  export HOME=/home/$USERNAME
+  sudo -u $USERNAME -E "$0" "$@"
   exit $?
 fi
 
