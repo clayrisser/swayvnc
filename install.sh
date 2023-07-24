@@ -42,7 +42,7 @@ sudo -u $USERNAME openssl req -x509 -newkey rsa:4096 -sha256 -days 999999 -nodes
     -addext subjectAltName=DNS:localhost,DNS:localhost,IP:127.0.0.1
 cat /etc/sway/config > $SWAY_CONFIG/config
 cat <<EOF >> $SWAY_CONFIG/config
-exec sh -c "[ \"\$VNC\" != \"false\" ] && wayvnc -C $WAYVNC_CONFIG/config || true"
+exec sh -c "[ \"\$VNC\" != \"false\" ] && wayvnc -C $HOME/.config/wayvnc/config || true"
 exec swaymsg output "HEADLESS-1" resolution "\$RESOLUTION"
 EOF
 chown -R $USERNAME:$USERNAME $WAYVNC_CONFIG
