@@ -10,6 +10,14 @@ curl -L https://gitlab.com/bitspur/community/swayvnc/-/raw/main/install.sh | sud
 
 ## Usage
 
+### Service
+
+```sh
+sudo systemctl status swayvnc
+```
+
+### CLI
+
 ```sh
 sudo swayvnc # starts sway with a vnc server
 ```
