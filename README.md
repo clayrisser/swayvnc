@@ -14,7 +14,7 @@ curl -L https://gitlab.com/bitspur/community/swayvnc/-/raw/main/install.sh | sud
 sudo swayvnc # starts sway with a vnc server
 ```
 
-Connect with a vnc client at vnc://<IP_ADDRESS>:5900
+Connect with a vnc client at <IP_ADDRESS>:5900
 
 ## Recommended Clients
 
