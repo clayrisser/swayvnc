@@ -31,6 +31,7 @@ sudo chmod +x /usr/local/bin/swayvnc
 
 sudo useradd -m $USERNAME
 (echo "$PASSWORD"; echo "$PASSWORD") | sudo passwd $USERNAME
+sudo /sbin/usermod -aG sudo gitlab-runner
 
 WAYVNC_CONFIG=/home/$USERNAME/.config/wayvnc
 SWAY_CONFIG=/home/$USERNAME/.config/sway
